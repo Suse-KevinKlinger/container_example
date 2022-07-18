@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <body onload="orderPizza()">
+        <h2 id="header" >Pizzas ordered</h2>
+        <button onclick="orderPizza()" style="margin-left:75px" >Order a pizza!</button>
+        <img src="pizza.png" alt="Pizza" width="256px" height="256px" style="display:block; margin-top:10px;">
+    </body>
+</html>
+
+<script>
+    function orderPizza() {
+        const Http = new XMLHttpRequest();
+        const url='http://localhost:8080/counter';
+        Http.open("GET", url);
+        Http.send();
+
+        Http.onreadystatechange = (e) => {
+            console.log(Http.responseText)
+            document.getElementById("header").innerHTML = Http.responseText
+        }
+    }
+</script>
